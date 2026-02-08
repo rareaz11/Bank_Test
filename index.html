@@ -10,13 +10,15 @@
       <h1>MojaBanka</h1>
       <p>Prijavi se na svoj račun</p>
 
-      <form>
-        <input type="text" placeholder="Korisničko ime" />
-        <input type="password" placeholder="Lozinka" />
+      <form id="loginForm">
+        <input id="userName" type="text" placeholder="Korisničko ime" />
+        <input id="password" type="password" placeholder="Lozinka" />
+        <span id="errMesspass"></span>
         <button class="primary-btn">Prijava</button>
       </form>
 
       <span>Nemaš račun? <a href="register.html">Registriraj se</a></span>
     </div>
   </body>
+  <script src="script.js"></script>
 </html>

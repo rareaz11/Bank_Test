@@ -1,0 +1,84 @@
+const users = [
+  {
+    id: 1,
+    userName: "ivan",
+    password: 1234,
+  },
+  {
+    id: 2,
+    userName: "pero",
+    password: 1234,
+  },
+];
+
+const racuni = [
+  {
+    userId: 1,
+    amount: 5000,
+    listOfTransaction: [
+      {
+        description: "uplata",
+        who: "me",
+        value: 500,
+        date: "01-03-2022",
+      },
+      {
+        description: "uplata",
+        who: "me",
+        value: 100,
+        date: "02-10-2022",
+      },
+      {
+        description: "transakcija",
+        who: "me",
+        value: 100,
+        date: "01-10-2022",
+      },
+    ],
+  },
+];
+
+const form = document.getElementById("loginForm");
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  let user = document.querySelector("#userName").value;
+  let password = document.querySelector("#password").value;
+  let errMessge = document.getElementById("errMesspass");
+
+  if (user == "" || password == "") {
+    displayErorrMessage("Sva polja su obavezna!", errMessge, "red");
+    return;
+  }
+  if (user == "") {
+    displayErorrMessage("Polje korisnicko ime je prazno", errMessge, "red");
+    return;
+  }
+  if (password == "") {
+    displayErorrMessage("Polje korisnicko ime je prazno", errMessge, "red");
+    return;
+  }
+
+  const foundUser = users.find(
+    (userx) => userx.userName == user && userx.password == password,
+  );
+
+  if (!foundUser) {
+    displayErorrMessage(
+      "Pogresno korisnicko ime ili lozinka",
+      errMessge,
+      "red",
+    );
+    return;
+  } else {
+    displayErorrMessage("Super, pogodak", errMessge, "green");
+  }
+
+  console.log(`user name is ${user} and password is ${password}`);
+});
+
+function displayErorrMessage(mess, selec, color) {
+  selec.textContent = mess;
+  selec.style.color = color;
+}
