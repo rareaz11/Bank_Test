@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="hr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dashboard | MojaBanka</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h2>MojaBanka</h2>
+      <a class="secondary-btn" href="login.html">Odjava</a>
+    </header>
+
+    <main class="dashboard split">
+      <!-- LIJEVO: TRANSAKCIJE -->
+      <section class="transactions-panel">
+        <h3>Transakcije</h3>
+        <ul class="transaction-list">
+          <li><span>Uplata</span><span class="plus">+€500</span></li>
+          <li><span>Transfer</span><span class="minus">-€120</span></li>
+          <li><span>Uplata</span><span class="plus">+€300</span></li>
+          <li><span>Transfer</span><span class="minus">-€50</span></li>
+        </ul>
+      </section>
+
+      <!-- DESNO: AKCIJE -->
+      <section class="actions-panel">
+        <div class="form-card">
+          <h4>Uplata novca</h4>
+          <input type="number" placeholder="Iznos" />
+          <button class="primary-btn">Potvrdi uplatu</button>
+        </div>
+
+        <div class="form-card">
+          <h4>Transfer novca</h4>
+          <input type="number" placeholder="Iznos" />
+          <input type="text" placeholder="Ime primatelja" />
+          <button class="primary-btn">Potvrdi transfer</button>
+        </div>
+
+        <div class="form-card danger-card">
+          <h4>Brisanje računa</h4>
+          <button class="danger-btn">Obriši račun</button>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
