@@ -11,33 +11,6 @@ const users = [
   },
 ];
 
-const racuni = [
-  {
-    userId: 1,
-    amount: 5000,
-    listOfTransaction: [
-      {
-        description: "uplata",
-        who: "me",
-        value: 500,
-        date: "01-03-2022",
-      },
-      {
-        description: "uplata",
-        who: "me",
-        value: 100,
-        date: "02-10-2022",
-      },
-      {
-        description: "transakcija",
-        who: "me",
-        value: 100,
-        date: "01-10-2022",
-      },
-    ],
-  },
-];
-
 const form = document.getElementById("loginForm");
 
 form.addEventListener("submit", function (e) {
@@ -72,7 +45,9 @@ form.addEventListener("submit", function (e) {
     );
     return;
   } else {
-    displayErorrMessage("Super, pogodak", errMessge, "green");
+    localStorage.setItem("prijavljeniKorisnik", JSON.stringify(foundUser.id));
+    //displayErorrMessage("Super, pogodak", errMessge, "green");
+    window.location.href = "main.html";
   }
 
   console.log(`user name is ${user} and password is ${password}`);

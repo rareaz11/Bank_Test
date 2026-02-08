@@ -165,11 +165,11 @@ form input::placeholder {
   color: var(--secondary);
 }
 
-.transaction-list {
+#transaction-list {
   list-style: none;
 }
 
-.transaction-list li {
+#transaction-list li {
   display: flex;
   justify-content: space-between;
   padding: 1rem;
@@ -260,4 +260,16 @@ form input::placeholder {
 
 .details-card p strong {
   color: var(--muted);
+}
+.account-amount {
+  display: flex;
+  justify-content: space-between;
+  color: var(--secondary);
+  margin-bottom: 50px;
+}
+.greentype {
+  color: green;
+}
+.redtype {
+  color: red;
 }

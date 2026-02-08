@@ -8,19 +8,20 @@
   <body>
     <header class="header">
       <h2>MojaBanka</h2>
-      <a class="secondary-btn" href="index.html">Odjava</a>
+      <a id="logout" class="secondary-btn" href="index.html">Odjava</a>
     </header>
 
     <main class="dashboard split">
       <!-- LIJEVO: TRANSAKCIJE -->
       <section class="transactions-panel">
+        <div class="account-amount">
+          <h2>Stanje racuna</h4>
+          <h2 id="iznos"></h4>
+        </div>
+
         <h3>Transakcije</h3>
-        <ul class="transaction-list">
-          <li><span>Uplata</span><span class="plus">+€500</span></li>
-          <li><span>Transfer</span><span class="minus">-€120</span></li>
-          <li><span>Uplata</span><span class="plus">+€300</span></li>
-          <li><span>Transfer</span><span class="minus">-€50</span></li>
-        </ul>
+        <ul id="transaction-list">
+               </ul>
       </section>
 
       <!-- DESNO: AKCIJE -->
@@ -44,6 +45,7 @@
         </div>
       </section>
     </main>
+    <script src="script.js"></script>
+    <script src="main.js"></script>
   </body>
-  <script src="script.js"></script>
 </html>
