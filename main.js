@@ -33,8 +33,6 @@ logoutBtn.addEventListener("click", function () {
 
 const mojRacun = racuni.find((account) => account.userId == prijavljeniId);
 
-console.log(mojRacun);
-
 const iznos = document.getElementById("iznos");
 iznos.textContent = mojRacun.amount + "€";
 
@@ -42,7 +40,6 @@ const transactionList = document.getElementById("transaction-list");
 
 mojRacun.listOfTransaction.forEach((tr) => {
   const li = document.createElement("li");
-  console.log("izvrseno");
   let currentValue =
     tr.description == "transakcija"
       ? `<span class="redtype">-${tr.value}</span>`

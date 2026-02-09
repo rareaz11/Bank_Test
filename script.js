@@ -49,8 +49,6 @@ form.addEventListener("submit", function (e) {
     //displayErorrMessage("Super, pogodak", errMessge, "green");
     window.location.href = "main.html";
   }
-
-  console.log(`user name is ${user} and password is ${password}`);
 });
 
 function displayErorrMessage(mess, selec, color) {
