@@ -4,23 +4,22 @@ const korisnik = JSON.parse(localStorage.getItem("prijavljeniKorisnik"));
 if (!korisnik) {
   window.location.href = "index.html"; // ili login.html
 }
+const addMoney = document.getElementById("add-money");
 const prijavljeniId = localStorage.getItem("prijavljeniKorisnik");
 const racuni = [
   {
     userId: 1,
     amount: 5000,
     listOfTransaction: [
-      { description: "uplata", who: "me", value: 500, date: "01-03-2022" },
-      { description: "uplata", who: "me", value: 100, date: "02-10-2022" },
-      { description: "transakcija", who: "me", value: 100, date: "01-10-2022" },
+      { description: "uplata", who: "me", value: 500 },
+      { description: "uplata", who: "me", value: 100 },
+      { description: "transakcija", who: "me", value: 100 },
     ],
   },
   {
     userId: 2,
     amount: 3000,
-    listOfTransaction: [
-      { description: "uplata", who: "me", value: 300, date: "05-01-2022" },
-    ],
+    listOfTransaction: [{ description: "uplata", who: "me", value: 300 }],
   },
 ];
 
@@ -45,9 +44,40 @@ mojRacun.listOfTransaction.forEach((tr) => {
       ? `<span class="redtype">-${tr.value}</span>`
       : `<span class="greentype">+${tr.value}</span>`;
   li.innerHTML = `
-    <span>${tr.date}</span>
     <span>${tr.description}</span>
+    <span>${tr.who}</span>
     ${currentValue}
   `;
   transactionList.appendChild(li);
+});
+
+addMoney.addEventListener("click", function () {
+  let addMoneyintoAccount = document.getElementById("firstInput").value;
+
+  if (addMoneyintoAccount == "" || !parseInt(addMoneyintoAccount)) {
+    document.getElementById("errMess2").textContent =
+      "Vrijednost nije ispravna ili je polje prazno";
+    return;
+  } else {
+    console.log("ok je");
+
+    mojRacun.amount = mojRacun.amount + parseInt(addMoneyintoAccount);
+    mojRacun.listOfTransaction.push({
+      description: "uplata",
+      who: "me",
+      value: parseInt(addMoneyintoAccount),
+    });
+
+    iznos.textContent = mojRacun.amount + "€";
+
+    const li = document.createElement("li");
+
+    li.innerHTML = `
+    <span>UPLATA</span>
+    <span>OWNER</span>
+    <span class="greentype">${addMoneyintoAccount}</span>
+  `;
+    transactionList.insertBefore(li, transactionList.firstChild);
+  }
+  console.log(mojRacun);
 });
