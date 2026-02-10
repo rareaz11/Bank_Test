@@ -59,7 +59,7 @@ addMoney.addEventListener("click", function () {
       "Vrijednost nije ispravna ili je polje prazno";
     return;
   } else {
-    console.log("ok je");
+    //console.log("ok je");
 
     mojRacun.amount = mojRacun.amount + parseInt(addMoneyintoAccount);
     mojRacun.listOfTransaction.push({
@@ -75,9 +75,34 @@ addMoney.addEventListener("click", function () {
     li.innerHTML = `
     <span>UPLATA</span>
     <span>OWNER</span>
-    <span class="greentype">${addMoneyintoAccount}</span>
+    <span class="greentype">+${addMoneyintoAccount}</span>
   `;
     transactionList.insertBefore(li, transactionList.firstChild);
   }
-  console.log(mojRacun);
+  //console.log(mojRacun);
+});
+// transfer money
+
+const transferMoneyBtn = document.getElementById("transfer-money");
+
+transferMoneyBtn.addEventListener("click", function () {
+  let transferMoney = document.getElementById("secInput").value;
+  let nameForTransfer = document.getElementById("transferName").value;
+  mojRacun.amount = mojRacun.amount - parseInt(transferMoney);
+  if (transferMoney == "" || nameForTransfer == "") {
+    document.getElementById("errMess3").textContent =
+      "Vrijednost nije ispravna ili je polje prazno";
+    return;
+  } else {
+    iznos.textContent = mojRacun.amount;
+
+    const li = document.createElement("li");
+
+    li.innerHTML = `
+    <span>UPLATA</span>
+    <span>OWNER</span>
+    <span class="redtype">-${transferMoney}</span>
+  `;
+    transactionList.insertBefore(li, transactionList.firstChild);
+  }
 });

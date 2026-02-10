@@ -273,3 +273,6 @@ form input::placeholder {
 .redtype {
   color: red;
 }
+#errMess3 {
+  color: red;
+}
