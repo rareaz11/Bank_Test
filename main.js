@@ -7,7 +7,7 @@ if (!korisnik) {
 
 // logout option with localstorage- currently works-after one minut logout
 // need to add option for tracking clicks on page
-let minuts = 60000;
+let minuts = 160000;
 const numTime = parseInt(vrijeme) + minuts;
 let currentTime = Date.now();
 if (numTime < currentTime) {
@@ -36,11 +36,17 @@ const racuni = [
 ];
 
 const logoutBtn = document.getElementById("logout");
+const loadingModal = document.getElementById("loadingModal");
 
-logoutBtn.addEventListener("click", function () {
-  localStorage.removeItem("prijavljeniKorisnik");
-  localStorage.removeItem("time");
-  window.location.href = "index.html";
+logoutBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  loadingModal.classList.add("active");
+
+  setTimeout(() => {
+    localStorage.removeItem("prijavljeniKorisnik");
+    localStorage.removeItem("time");
+    window.location.href = "index.html";
+  }, 2000);
 });
 
 const mojRacun = racuni.find((account) => account.userId == prijavljeniId);
@@ -72,27 +78,32 @@ addMoney.addEventListener("click", function () {
       "Vrijednost nije ispravna ili je polje prazno";
     return;
   } else {
-    //console.log("ok je");
+    loadingModal.classList.add("active");
 
-    mojRacun.amount = mojRacun.amount + parseInt(addMoneyintoAccount);
-    mojRacun.listOfTransaction.push({
-      description: "uplata",
-      who: "me",
-      value: parseInt(addMoneyintoAccount),
-    });
+    setTimeout(() => {
+      mojRacun.amount = mojRacun.amount + parseInt(addMoneyintoAccount);
+      mojRacun.listOfTransaction.push({
+        description: "uplata",
+        who: "me",
+        value: parseInt(addMoneyintoAccount),
+      });
 
-    iznos.textContent = mojRacun.amount + "€";
+      iznos.textContent = mojRacun.amount + "€";
 
-    const li = document.createElement("li");
+      const li = document.createElement("li");
 
-    li.innerHTML = `
+      li.innerHTML = `
     <span>UPLATA</span>
     <span>OWNER</span>
     <span class="greentype">+${addMoneyintoAccount}</span>
   `;
-    transactionList.insertBefore(li, transactionList.firstChild);
+      transactionList.insertBefore(li, transactionList.firstChild);
+      document.getElementById("errMess2").textContent = "";
+      document.getElementById("firstInput").value = 0;
+
+      loadingModal.classList.remove("active");
+    }, 2000);
   }
-  //console.log(mojRacun);
 });
 // transfer money
 
@@ -107,15 +118,21 @@ transferMoneyBtn.addEventListener("click", function () {
       "Vrijednost nije ispravna ili je polje prazno";
     return;
   } else {
-    iznos.textContent = mojRacun.amount;
+    loadingModal.classList.add("active");
+    setTimeout(() => {
+      iznos.textContent = mojRacun.amount;
 
-    const li = document.createElement("li");
+      const li = document.createElement("li");
 
-    li.innerHTML = `
+      li.innerHTML = `
     <span>UPLATA</span>
     <span>OWNER</span>
     <span class="redtype">-${transferMoney}</span>
   `;
-    transactionList.insertBefore(li, transactionList.firstChild);
+      transactionList.insertBefore(li, transactionList.firstChild);
+      document.getElementById("secInput").value = 0;
+      document.getElementById("transferName").value = "";
+      loadingModal.classList.remove("active");
+    }, 2000);
   }
 });
