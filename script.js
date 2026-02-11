@@ -45,7 +45,10 @@ form.addEventListener("submit", function (e) {
     );
     return;
   } else {
+    const start = Date.now();
+    console.log(start);
     localStorage.setItem("prijavljeniKorisnik", JSON.stringify(foundUser.id));
+    localStorage.setItem("time", JSON.stringify(start));
     //displayErorrMessage("Super, pogodak", errMessge, "green");
     window.location.href = "main.html";
   }

@@ -1,9 +1,21 @@
 const korisnik = JSON.parse(localStorage.getItem("prijavljeniKorisnik"));
-
+const vrijeme = JSON.parse(localStorage.getItem("time"));
 // Ako nema korisnika → redirect na login
 if (!korisnik) {
   window.location.href = "index.html"; // ili login.html
 }
+
+// logout option with localstorage- currently works-after one minut logout
+// need to add option for tracking clicks on page
+let minuts = 60000;
+const numTime = parseInt(vrijeme) + minuts;
+let currentTime = Date.now();
+if (numTime < currentTime) {
+  localStorage.removeItem("prijavljeniKorisnik");
+  localStorage.removeItem("time");
+  window.location.href = "index.html";
+}
+
 const addMoney = document.getElementById("add-money");
 const prijavljeniId = localStorage.getItem("prijavljeniKorisnik");
 const racuni = [
@@ -27,6 +39,7 @@ const logoutBtn = document.getElementById("logout");
 
 logoutBtn.addEventListener("click", function () {
   localStorage.removeItem("prijavljeniKorisnik");
+  localStorage.removeItem("time");
   window.location.href = "index.html";
 });
 
