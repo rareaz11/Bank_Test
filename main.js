@@ -112,27 +112,34 @@ const transferMoneyBtn = document.getElementById("transfer-money");
 transferMoneyBtn.addEventListener("click", function () {
   let transferMoney = document.getElementById("secInput").value;
   let nameForTransfer = document.getElementById("transferName").value;
-  mojRacun.amount = mojRacun.amount - parseInt(transferMoney);
+
   if (transferMoney == "" || nameForTransfer == "") {
     document.getElementById("errMess3").textContent =
       "Vrijednost nije ispravna ili je polje prazno";
     return;
   } else {
+    if (mojRacun.amount < parseInt(transferMoney)) {
+      document.getElementById("errMess3").textContent =
+        `za iznos: ${transferMoney}, trenutno nemate dovoljno novaca na racunu!`;
+      return;
+    }
     loadingModal.classList.add("active");
     setTimeout(() => {
+      mojRacun.amount = mojRacun.amount - parseInt(transferMoney);
       iznos.textContent = mojRacun.amount;
 
       const li = document.createElement("li");
 
       li.innerHTML = `
-    <span>UPLATA</span>
-    <span>OWNER</span>
+    <span>ISPLATA</span>
+    <span>${nameForTransfer}</span>
     <span class="redtype">-${transferMoney}</span>
   `;
       transactionList.insertBefore(li, transactionList.firstChild);
       document.getElementById("secInput").value = 0;
       document.getElementById("transferName").value = "";
       loadingModal.classList.remove("active");
+      document.getElementById("errMess3").textContent = "";
     }, 2000);
   }
 });
