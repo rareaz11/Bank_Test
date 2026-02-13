@@ -82,7 +82,7 @@ form input::placeholder {
   cursor: pointer;
   color: var(--secondary);
 }
-/*Span on login page is to close button for login/sign in*/
+
 /* HEADER */
 .header {
   background: rgba(17, 24, 39, 0.8);
